@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sport_shoes_store/data/repositories/authentication_repository.dart';
+import 'package:sport_shoes_store/features/authentication/controllers/signup/verify_email_controller.dart';
 import 'package:sport_shoes_store/features/authentication/screens/login/login.dart';
 import 'package:sport_shoes_store/features/authentication/screens/signup/success_screen.dart';
 import 'package:sport_shoes_store/utils/constants/sizes.dart';
@@ -10,19 +12,21 @@ import 'package:sport_shoes_store/utils/helpers/helper.dart';
 import '../../../../utils/constants/image_strings.dart';
 
 class VerifyEmailScreen extends StatefulWidget {
-  const VerifyEmailScreen({super.key});
+  VerifyEmailScreen({super.key, this.email});
+  String? email;
 
   @override
   State<VerifyEmailScreen> createState() => _VerifyEmailScreenState();
 }
 
 class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
+  final controller = Get.put(VerifyEmailController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(onPressed: () => Get.offAll(() => const LoginScreen()), icon: const Icon(Icons.clear))
+          IconButton(onPressed: () => AuthenticationRepository.instance.logout(), icon: const Icon(Icons.clear))
         ],
       ),
       body: SingleChildScrollView(
@@ -37,19 +41,14 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
               const SizedBox(height: Sizes.spaceBtwSections),
               Text(TextString.confirmEmail, style: Theme.of(context).textTheme.headlineMedium, textAlign: TextAlign.center),
               const SizedBox(height: Sizes.spaceBtwSections),
-              Text('khanhduycris@gmail.com', style: Theme.of(context).textTheme.labelLarge, textAlign: TextAlign.center),
+              Text(widget.email ?? '', style: Theme.of(context).textTheme.labelLarge, textAlign: TextAlign.center),
               const SizedBox(height: Sizes.spaceBtwSections),
               Text(TextString.confirmEmailSubTitle, style: Theme.of(context).textTheme.labelMedium, textAlign: TextAlign.center),
               const SizedBox(height: Sizes.spaceBtwSections),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => Get.to(() => SuccessScreen(
-                      image: Images.onBoardingImage3,
-                      title: TextString.yourAccountCreatedTitle,
-                      subTitle: TextString.yourAccountCreatedSubTitle,
-                      onPressed: () => Get.to(() => const LoginScreen())
-                  )),
+                  onPressed: () => controller.checkEmailVerificationStatus(),
                   child: const Text(TextString.continues),
                 )
               ),
@@ -57,7 +56,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                  onPressed: (){},
+                  onPressed: () => controller.sendEmailVerification(),
                   child: const Text(TextString.resendEmail),
                 ),
               )

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sport_shoes_store/common/widgets/appbar/appbar.dart';
-import 'package:sport_shoes_store/features/authentication/screens/product_reviews/widgets/progress_indicator_and_rating.dart';
-import 'package:sport_shoes_store/features/authentication/screens/product_reviews/widgets/ratting_progress_indicator.dart';
-import 'package:sport_shoes_store/features/authentication/screens/product_reviews/widgets/user_review_card.dart';
-import 'package:sport_shoes_store/utils/constants/colors.dart';
+import 'package:sport_shoes_store/features/shop/screens/product_reviews/widgets/ratting_progress_indicator.dart';
+import 'package:sport_shoes_store/features/shop/screens/product_reviews/widgets/user_review_card.dart';
 import 'package:sport_shoes_store/utils/constants/sizes.dart';
 import 'package:sport_shoes_store/utils/device/device_utils.dart';
 

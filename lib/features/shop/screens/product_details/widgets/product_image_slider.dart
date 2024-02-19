@@ -54,7 +54,7 @@ class ProductImageSlider extends StatelessWidget {
               ),
             ),
             KAppbar(
-              leadingOnPressed: () => Get.back(),
+              // leadingOnPressed: () => Get.back(),
               showBackArrow: true,
               actions: [
                 CircularIcon(icon: Icons.favorite, color: Colors.red,)

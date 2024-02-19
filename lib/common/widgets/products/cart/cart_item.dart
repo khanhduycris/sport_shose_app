@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../common/widgets/images/rounded_image.dart';
-import '../../../../../common/widgets/texts/brand_title_text_with_verifiled_icon.dart';
-import '../../../../../common/widgets/texts/product_title_text.dart';
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/image_strings.dart';
-import '../../../../../utils/constants/sizes.dart';
-import '../../../../../utils/helpers/helper.dart';
+import '../../images/rounded_image.dart';
+import '../../texts/brand_title_text_with_verifiled_icon.dart';
+import '../../texts/product_title_text.dart';
+import '../../../../utils/constants/colors.dart';
+import '../../../../utils/constants/image_strings.dart';
+import '../../../../utils/constants/sizes.dart';
+import '../../../../utils/helpers/helper.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({
@@ -42,13 +42,13 @@ class CartItem extends StatelessWidget {
                 )),
             Text.rich(TextSpan(children: [
               TextSpan(
-                  text: 'Color',
+                  text: 'Color ',
                   style: Theme.of(context).textTheme.bodySmall),
               TextSpan(
-                  text: 'Green',
+                  text: 'Green ',
                   style: Theme.of(context).textTheme.bodyLarge),
               TextSpan(
-                  text: 'Size',
+                  text: 'Size ',
                   style: Theme.of(context).textTheme.bodySmall),
               TextSpan(
                   text: 'UK 08',

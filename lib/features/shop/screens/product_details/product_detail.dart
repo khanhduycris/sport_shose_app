@@ -4,18 +4,17 @@ import 'package:readmore/readmore.dart';
 import 'package:sport_shoes_store/common/widgets/appbar/appbar.dart';
 import 'package:sport_shoes_store/common/widgets/custom_shapes/curved_edges/custom_edges_widget.dart';
 import 'package:sport_shoes_store/common/widgets/heading/section_heading.dart';
-import 'package:sport_shoes_store/common/widgets/icons/circular_icon.dart';
-import 'package:sport_shoes_store/common/widgets/images/rounded_image.dart';
-import 'package:sport_shoes_store/features/authentication/screens/product_details/widgets/bottom_add_to_cart.dart';
-import 'package:sport_shoes_store/features/authentication/screens/product_details/widgets/product_attributes.dart';
-import 'package:sport_shoes_store/features/authentication/screens/product_details/widgets/product_image_slider.dart';
-import 'package:sport_shoes_store/features/authentication/screens/product_details/widgets/product_meta_data.dart';
-import 'package:sport_shoes_store/features/authentication/screens/product_details/widgets/ratting_share.dart';
-import 'package:sport_shoes_store/features/authentication/screens/product_reviews/product_reviews.dart';
+import 'package:sport_shoes_store/features/shop/screens/product_details/widgets/bottom_add_to_cart.dart';
+import 'package:sport_shoes_store/features/shop/screens/product_details/widgets/product_attributes.dart';
+import 'package:sport_shoes_store/features/shop/screens/product_details/widgets/product_image_slider.dart';
+import 'package:sport_shoes_store/features/shop/screens/product_details/widgets/product_meta_data.dart';
+import 'package:sport_shoes_store/features/shop/screens/product_details/widgets/ratting_share.dart';
 import 'package:sport_shoes_store/utils/constants/colors.dart';
 import 'package:sport_shoes_store/utils/constants/image_strings.dart';
 import 'package:sport_shoes_store/utils/constants/sizes.dart';
 import 'package:sport_shoes_store/utils/helpers/helper.dart';
+
+import '../product_reviews/product_reviews.dart';
 class ProductDetail extends StatefulWidget {
   const ProductDetail({super.key});
 

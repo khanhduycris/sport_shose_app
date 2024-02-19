@@ -1,21 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../../utils/constants/colors.dart';
+import '../../../../features/shop/screens/cart/cart.dart';
+import '../../../../utils/constants/colors.dart';
 
 class CartCounterIcon extends StatelessWidget {
   const CartCounterIcon({
-    super.key, required this.iconColor, required this.onPressed,
+    super.key, this.iconColor, required this.onPressed,
   });
 
-  final Color iconColor;
+  final Color? iconColor;
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        IconButton(onPressed: onPressed, icon: Icon(Icons.store, color: iconColor,)),
+        IconButton(onPressed: () => Get.to(() => CartScreen()), icon: Icon(Icons.store, color: iconColor,)),
         Positioned(
           right: 0,
           child: Container(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:sport_shoes_store/common/layouts/grid_layout.dart';
 import 'package:sport_shoes_store/common/widgets/appbar/appbar.dart';
 import 'package:sport_shoes_store/common/widgets/custom_shapes/containers/rounded_container.dart';
@@ -7,7 +9,8 @@ import 'package:sport_shoes_store/common/widgets/heading/section_heading.dart';
 import 'package:sport_shoes_store/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:sport_shoes_store/common/widgets/tabbar/tab_bar.dart';
 import 'package:sport_shoes_store/common/widgets/texts/brand_title_text_with_verifiled_icon.dart';
-import 'package:sport_shoes_store/features/authentication/screens/store/widgets/category_tab.dart';
+import 'package:sport_shoes_store/features/shop/screens/brand/all_brands.dart';
+import 'package:sport_shoes_store/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:sport_shoes_store/utils/constants/colors.dart';
 import 'package:sport_shoes_store/utils/constants/enums.dart';
 import 'package:sport_shoes_store/utils/constants/image_strings.dart';
@@ -62,7 +65,7 @@ class _StoreScreenState extends State<StoreScreen> {
                         padding: EdgeInsets.zero,
                       ),
                       const SizedBox(height: Sizes.spaceBtwSections,),
-                      SectionHeading(title: 'Featured Brands', onPressed: (){},),
+                      SectionHeading(title: 'Featured Brands', onPressed: () => Get.to(() => AllBrandsScreen()),),
                       const SizedBox(height: Sizes.spaceBtwItems / 1.5,),
                       GridLayout(
                         itemCount: 4,

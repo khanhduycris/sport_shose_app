@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:sport_shoes_store/common/styles/spacing_styles.dart';
 
+import '../../../../data/repositories/authentication_repository.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/constants/text_strings.dart';
@@ -35,7 +36,7 @@ class SuccessScreen extends StatelessWidget {
               SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () => Get.to(() => const LoginScreen()),
+                    onPressed: () => AuthenticationRepository.instance.screenRedirect(),
                     child: const Text(TextString.continues),
                   )
               ),

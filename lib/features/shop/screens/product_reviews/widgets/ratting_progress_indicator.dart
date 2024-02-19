@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_shoes_store/features/authentication/screens/product_reviews/widgets/progress_indicator_and_rating.dart';
-
+import 'package:sport_shoes_store/features/shop/screens/product_reviews/widgets/progress_indicator_and_rating.dart';
 class OverallProductRating extends StatelessWidget {
   const OverallProductRating({
     super.key,
