@@ -3,8 +3,12 @@ import 'package:get/get.dart';
 import 'package:sport_shoes_store/common/styles/shadow_style.dart';
 import 'package:sport_shoes_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:sport_shoes_store/common/widgets/images/rounded_image.dart';
+import 'package:sport_shoes_store/common/widgets/texts/brand_title_text_with_verifiled_icon.dart';
 import 'package:sport_shoes_store/common/widgets/texts/product_title_text.dart';
+import 'package:sport_shoes_store/features/shop/controllers/product/product_controller.dart';
+import 'package:sport_shoes_store/features/shop/models/product_model.dart';
 import 'package:sport_shoes_store/utils/constants/colors.dart';
+import 'package:sport_shoes_store/utils/constants/enums.dart';
 import 'package:sport_shoes_store/utils/constants/image_strings.dart';
 import 'package:sport_shoes_store/utils/constants/sizes.dart';
 import 'package:sport_shoes_store/utils/helpers/helper.dart';
@@ -12,9 +16,13 @@ import 'package:sport_shoes_store/utils/helpers/helper.dart';
 import '../../../../features/shop/screens/product_details/product_detail.dart';
 import '../../icons/circular_icon.dart';
 import '../../texts/product_price_text.dart';
+import '../favourite_icon/favourite_icon.dart';
+import '../product_cart_add_button.dart';
 
 class ProductCardVertical extends StatefulWidget {
-  const ProductCardVertical({super.key});
+  const ProductCardVertical({super.key, required this.productModel});
+
+  final ProductModel productModel;
 
   @override
   State<ProductCardVertical> createState() => _ProductCardVerticalState();
@@ -23,9 +31,11 @@ class ProductCardVertical extends StatefulWidget {
 class _ProductCardVerticalState extends State<ProductCardVertical> {
   @override
   Widget build(BuildContext context) {
+    final controller = ProductController.instance;
+    final salePercentage = controller.calculateSalePercentage(widget.productModel.price, widget.productModel.salePrice);
     final dark = HelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: () => Get.to(() => ProductDetail()),
+      onTap: () => Get.to(() => ProductDetail(productModel: widget.productModel)),
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),
@@ -37,15 +47,19 @@ class _ProductCardVerticalState extends State<ProductCardVertical> {
         child: Column(
           children: [
             RoundedContainer(
-              height: 206,
+              height: 180,
               padding: const EdgeInsets.all(Sizes.sm),
               backgroundColor: dark ? ColorApp.dark : ColorApp.light,
               child: Stack(
                 children: [
-                  const RoundImage(
-                    imageUrl: Images.onBoardingImage3,
-                    applyImageRadius: true,
+                  Center(
+                    child: RoundImage(
+                      imageUrl: widget.productModel.thumbnail ,
+                      applyImageRadius: true,
+                        isNetworkImage : true
+                    ),
                   ),
+                  if(salePercentage != null)
                   Positioned(
                       top: 12,
                       child: RoundedContainer(
@@ -54,64 +68,61 @@ class _ProductCardVerticalState extends State<ProductCardVertical> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: Sizes.sm, vertical: Sizes.xs),
                         child: Text(
-                          '25%',
+                          '$salePercentage%',
                           style: Theme.of(context)
                               .textTheme
                               .labelLarge!
                               .apply(color: ColorApp.black),
                         ),
                       )),
-                  const Positioned(
+                  Positioned(
                       top: 0,
                       right: 0,
-                      child: CircularIcon(
-                        icon: Icons.favorite,
-                        color: Colors.red,
-                      )
+                      child: FavouriteIcon(productId: widget.productModel.id,)
                   )
                 ],
               ),
             ),
             const SizedBox(height: Sizes.spaceBtwItems / 2,),
             Padding(
-              padding: EdgeInsets.only(left: Sizes.sm),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const ProductTextTitle(
-                      title: 'Green Nike Air Shoes',
-                      smallSize: true,
-                  ),
-                  Row(
-                    children: [
-                      Text('Nike', overflow: TextOverflow.ellipsis,maxLines: 1, style: Theme.of(context).textTheme.labelMedium,),
-                      const SizedBox(width: Sizes.xs,),
-                      const Icon(Icons.verified, color: ColorApp.blue02, size: Sizes.iconsXs,)
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ProductPriceText(price: '35.0',),
-                      Container(
-                        decoration: const BoxDecoration(
-                            color: ColorApp.dark,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(Sizes.cardRadiusLg),
-                              bottomRight: Radius.circular(Sizes.productImageRadius),
-                            )
-                        ),
-                        child: const SizedBox(
-                          width: Sizes.iconLg * 1.2,
-                          height: Sizes.iconLg * 1.2,
-                          child: Center(child: Icon(Icons.add, color: ColorApp.bg,),),
-                        ),
-                      )
-                    ],
-                  )
-                ],
+              padding: const EdgeInsets.only(left: Sizes.sm),
+              child: SizedBox(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ProductTextTitle(title: widget.productModel.title, smallSize: true,),
+                    const SizedBox(height: Sizes.spaceBtwItems/2,),
+                    BrandTitleWithVerifiedIcon(title: widget.productModel.brand!.name),
+                  ],
+                ),
               ),
             ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: Column(
+                    children: [
+                      // if(widget.productModel.productType == ProductType.single.toString() && widget.productModel.salePrice > 0)
+                      Padding(
+                        padding: const EdgeInsets.only(left: Sizes.sm),
+                        child: Text(
+                          widget.productModel.price.toString(),
+                          style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: Sizes.sm),
+                        child: ProductPriceText(price: controller.getProductPrice(widget.productModel),),
+                      ),
+                    ],
+                  ),
+                ),
+                ProductCartAddToCart(productModel: widget.productModel,)
+              ],
+            )
           ],
         ),
       ),

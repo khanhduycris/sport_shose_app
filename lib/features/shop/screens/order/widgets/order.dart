@@ -17,9 +17,8 @@ class _OrderScreenState extends State<OrderScreen> {
       appBar: KAppbar(
         title: Text('My Order', style: Theme.of(context).textTheme.headlineSmall,), showBackArrow: true
       ),
-      body: Padding(
+      body: const Padding(
         padding: EdgeInsets.all(Sizes.defaultSpace),
-
         child: OrderListItems(),
       ),
     );

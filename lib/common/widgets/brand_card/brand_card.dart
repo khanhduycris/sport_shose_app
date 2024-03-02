@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sport_shoes_store/features/shop/models/brand_model.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/enums.dart';
@@ -12,8 +13,10 @@ import '../texts/brand_title_text_with_verifiled_icon.dart';
 
 class BrandCard extends StatelessWidget {
   const BrandCard({
-    super.key, required this.showBorder, this.onTap,
+    super.key, required this.showBorder, this.onTap, required this.brandModel
   });
+
+  final BrandModel brandModel;
   final bool showBorder;
   final void Function()? onTap;
 
@@ -30,10 +33,9 @@ class BrandCard extends StatelessWidget {
           children: [
             Flexible(
               child: CircularImage(
-                isNetworkImage: false,
-                image: Images.onBoardingImage3,
+                isNetworkImage: true,
+                image: brandModel.image,
                 backgroundColor: Colors.transparent,
-                overlayColor: dark ? ColorApp.bg : ColorApp.black,
               ),
             ),
             const SizedBox(width: Sizes.spaceBtwItems / 2,),
@@ -42,9 +44,9 @@ class BrandCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const BrandTitleWithVerifiedIcon(title: 'Nike', brandTextSizes: TextSizes.large,),
+                  BrandTitleWithVerifiedIcon(title: brandModel.name, brandTextSizes: TextSizes.large,),
                   Text(
-                    '222 products',
+                    '${brandModel.productsCount ?? 0} products',
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.labelMedium,
                   )

@@ -5,19 +5,19 @@ import 'package:sport_shoes_store/common/widgets/appbar/appbar.dart';
 import 'package:sport_shoes_store/common/widgets/brand_card/brand_card.dart';
 import 'package:sport_shoes_store/common/widgets/heading/section_heading.dart';
 import 'package:sport_shoes_store/common/widgets/products/sortable/sortable_products.dart';
+import 'package:sport_shoes_store/features/shop/controllers/brand_controller.dart';
+import 'package:sport_shoes_store/features/shop/models/brand_model.dart';
 import 'package:sport_shoes_store/features/shop/screens/brand/brand_products.dart';
 import 'package:sport_shoes_store/utils/constants/sizes.dart';
 
-class AllBrandsScreen extends StatefulWidget {
+import '../../../../common/widgets/shimmer/brand_shimmer.dart';
+
+class AllBrandsScreen extends StatelessWidget {
   const AllBrandsScreen({super.key});
 
   @override
-  State<AllBrandsScreen> createState() => _AllBrandsScreenState();
-}
-
-class _AllBrandsScreenState extends State<AllBrandsScreen> {
-  @override
   Widget build(BuildContext context) {
+    final brandController = BrandController.instance;
     return Scaffold(
       appBar: const KAppbar(
         title: Text('Brand'),
@@ -28,18 +28,29 @@ class _AllBrandsScreenState extends State<AllBrandsScreen> {
           padding: EdgeInsets.all(Sizes.defaultSpace),
           child: Column(
             children: [
-              SectionHeading(
+              const SectionHeading(
                 title: 'Brands',
                 showActionButton: false,
               ),
               const SizedBox(
                 height: Sizes.spaceBtwItems,
               ),
-              GridLayout(
-                itemCount: 10,
-                mainAxisExtent: 80,
-                itemBuilder: (p0, p1) => BrandCard(showBorder: true, onTap: () => Get.to(()=> BrandProducts()),),
-              )
+              Obx(
+                      () {
+                    if(brandController.isLoading.value) return const BrandsShimmer();
+                    if(brandController.featureBrands.isEmpty){
+                      return Center(child: Text("No data", style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),));
+                    }
+                    return GridLayout(
+                      itemCount: brandController.allBrands.length,
+                      mainAxisExtent: 80,
+                      itemBuilder: (_, index) {
+                        final brand = brandController.allBrands[index];
+                        return BrandCard(showBorder: true, brandModel: brand,onTap: ()=> BrandProducts(brand: brand,));
+                      },
+                    );
+                  }
+              ),
             ],
           ),
         ),

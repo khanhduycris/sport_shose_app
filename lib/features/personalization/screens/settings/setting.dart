@@ -47,7 +47,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   SizedBox(height: Sizes.spaceBtwItems,),
                   SettingMenuTitle(icon: Icons.home, title: 'My Addresses', subTitle: 'Set shopping ...', onTap: () => Get.to(() => UserAddressScreen()),),
                   SettingMenuTitle(icon: Icons.card_travel, title: 'My Cart', subTitle: 'Set shopping ...', onTap: () => Get.to(() => OrderScreen()),),
-                  SettingMenuTitle(icon: Icons.shopping_bag, title: 'My Orders', subTitle: 'Set shopping ...'),
+                  SettingMenuTitle(icon: Icons.shopping_bag, title: 'My Orders', subTitle: 'Set shopping ...',  onTap: () => Get.to(() => OrderScreen())),
                   SettingMenuTitle(icon: Icons.food_bank, title: 'Bank Account', subTitle: 'Set shopping ...'),
                   SettingMenuTitle(icon: Icons.discount , title: 'My Coupons', subTitle: 'Set shopping ...'),
                   SettingMenuTitle(icon: Icons.notifications, title: 'Notifications', subTitle: 'Set shopping ...'),

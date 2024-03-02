@@ -1,12 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 import 'package:sport_shoes_store/common/layouts/grid_layout.dart';
 import 'package:sport_shoes_store/common/widgets/custom_shapes/curved_edges/custom_edges.dart';
 import 'package:sport_shoes_store/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:sport_shoes_store/common/widgets/shimmer/vertical_product_shimmer.dart';
 import 'package:sport_shoes_store/features/authentication/screens/home/widgets/home_appbar.dart';
 import 'package:sport_shoes_store/features/authentication/screens/home/widgets/home_categories.dart';
 import 'package:sport_shoes_store/features/authentication/screens/home/widgets/promo_slider.dart';
+import 'package:sport_shoes_store/features/shop/controllers/product/product_controller.dart';
 import 'package:sport_shoes_store/features/shop/screens/all_products/all_products.dart';
 import 'package:sport_shoes_store/utils/constants/colors.dart';
 import 'package:sport_shoes_store/utils/constants/image_strings.dart';
@@ -31,6 +34,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final controller = Get.put(ProductController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
                     SectionHeading(
-                      title: 'Popular Categories',
+                      title: 'Thương hiệu phổ biến',
                       showActionButton: false,
                       textColor: ColorApp.bg,
                     )
@@ -66,18 +70,46 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: Sizes.spaceBtwSections,
               ),
               HomeCategories(),
-              const SizedBox(height: Sizes.spaceBtwSections * 2,),
+              const SizedBox(
+                height: Sizes.spaceBtwSections * 2,
+              ),
             ],
           )),
           Padding(
               padding: const EdgeInsets.all(Sizes.defaultSpace),
               child: Column(
                 children: [
-                  PromoSlider(banners: [Images.banner1, Images.banner2, Images.banner3],),
-                  const SizedBox(height: Sizes.spaceBtwSections,),
-                  SectionHeading(title: 'Popular Products', onPressed: () => Get.to(() => AllProductScreen()),),
-                  const SizedBox(height: Sizes.spaceBtwSections,),
-                  GridLayout(itemCount: 8, itemBuilder: (_, index) => const ProductCardVertical())
+                  const PromoSlider(),
+                  const SizedBox(
+                    height: Sizes.spaceBtwSections,
+                  ),
+                  SectionHeading(
+                    title: 'Popular Products',
+                    onPressed: () => Get.to(() => AllProductScreen(
+                        title: 'Popular Products',
+                        futureMethod: controller.fetchAllFeaturedProducts(),
+                        query: FirebaseFirestore.instance
+                            .collection('Products')
+                            .where('IsFeatured', isEqualTo: true)
+                            .limit(6))),
+                  ),
+                  const SizedBox(
+                    height: Sizes.spaceBtwSections,
+                  ),
+                  Obx(() {
+                    if (controller.isLoading.value) {
+                      return const VerticalProductShimmer();
+                    }
+                    if (controller.featuredProducts.isEmpty) {
+                      return Center(
+                          child: Text('No data',
+                              style: Theme.of(context).textTheme.bodyMedium));
+                    }
+                    return GridLayout(
+                        itemCount: controller.featuredProducts.length,
+                        itemBuilder: (context, index) => ProductCardVertical(
+                            productModel: controller.featuredProducts[index]));
+                  })
                 ],
               ))
         ],

@@ -11,6 +11,7 @@ import 'package:sport_shoes_store/features/authentication/screens/login/login.da
 import 'package:sport_shoes_store/features/authentication/screens/onboarding.dart';
 import 'package:sport_shoes_store/features/authentication/screens/signup/vefify_email.dart';
 import 'package:sport_shoes_store/navigation_menu.dart';
+import 'package:sport_shoes_store/utils/local_storage/storage_utility.dart';
 
 import '../../utils/exceptions/firebase_exceptions.dart';
 import '../../utils/exceptions/format_exceptions.dart';
@@ -34,6 +35,9 @@ class AuthenticationRepository extends GetxController {
     final user = _auth.currentUser;
     if (user != null) {
       if (user.emailVerified) {
+
+        await LocalStorage.init(user.uid);
+
         Get.offAll(() => const NavigationMenu());
       } else {
         Get.offAll(() => VerifyEmailScreen(

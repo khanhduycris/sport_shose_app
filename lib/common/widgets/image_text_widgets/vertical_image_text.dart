@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sport_shoes_store/common/widgets/images/circular_image.dart';
+import 'package:sport_shoes_store/utils/constants/image_strings.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
@@ -7,12 +9,13 @@ import '../../../utils/helpers/helper.dart';
 
 class VerticalImageText extends StatelessWidget {
   const VerticalImageText({
-    super.key, required this.image, required this.title, this.textColor = ColorApp.bg, this.backgroundColor = ColorApp.bg, this.onTap,
+    super.key, required this.image, required this.title, this.textColor = ColorApp.bg, this.backgroundColor = ColorApp.bg, this.onTap, this.isNetworkImage = true,
   });
 
   final String image, title;
   final Color textColor;
   final Color? backgroundColor;
+  final bool isNetworkImage;
   final void Function()? onTap;
 
   @override
@@ -24,28 +27,22 @@ class VerticalImageText extends StatelessWidget {
         padding: const EdgeInsets.only(right: Sizes.spaceBtwItems),
         child: Column(
           children: [
-            Container(
-              width: 56,
-              height: 56,
-              padding: const EdgeInsets.all(Sizes.sm),
-              decoration: BoxDecoration(
-                  color: backgroundColor ?? (dark ? ColorApp.black : ColorApp.bg),
-                  borderRadius: BorderRadius.circular(100)
-              ),
-              child: Center(
-                child: Image(
-                  image: AssetImage(image), fit: BoxFit.cover, color: dark ? ColorApp.light : ColorApp.dark,
-                ),
-              ),
+            CircularImage(
+              image: image,
+              isNetworkImage: isNetworkImage,
+              backgroundColor: backgroundColor,
             ),
-            const SizedBox(height: Sizes.spaceBtwItems / 2 ,),
+            const SizedBox(height: Sizes.spaceBtwItems / 3 ,),
             SizedBox(
               width: 55,
-              child: Text(
-                title,
-                style: Theme.of(context).textTheme.labelMedium!.apply(color: backgroundColor),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  title,
+                  style: Theme.of(context).textTheme.labelMedium!.apply(color: backgroundColor),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             )
           ],

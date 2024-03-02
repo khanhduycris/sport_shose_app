@@ -3,7 +3,7 @@ import 'package:sport_shoes_store/common/widgets/loader/loaders.dart';
 import 'package:sport_shoes_store/data/repositories/product_repository.dart';
 import 'package:sport_shoes_store/utils/constants/enums.dart';
 
-import '../models/product_model.dart';
+import '../../models/product_model.dart';
 
 class ProductController extends GetxController{
   static ProductController get instance => Get.find();
@@ -29,6 +29,16 @@ class ProductController extends GetxController{
       Loaders.errorSnackBar(title: 'Oh snap', message: e.toString());
     }finally{
       isLoading.value = false;
+    }
+  }
+
+  Future<List<ProductModel>> fetchAllFeaturedProducts() async {
+    try{
+      final products = await productRepository.getFeaturedProducts();
+      return products;
+    }catch(e){
+      Loaders.errorSnackBar(title: 'Oh snap', message: e.toString());
+      return [];
     }
   }
 

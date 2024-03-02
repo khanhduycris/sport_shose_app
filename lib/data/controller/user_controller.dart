@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sport_shoes_store/common/widgets/loader/loaders.dart';
 import 'package:sport_shoes_store/data/repositories/authentication_repository.dart';
-import 'package:sport_shoes_store/data/repositories/user/user_repository.dart';
+import 'package:sport_shoes_store/data/repositories/user_repository.dart';
 import 'package:sport_shoes_store/features/authentication/controllers/signup/network_manager.dart';
 import 'package:sport_shoes_store/features/authentication/models/user_model.dart';
 import 'package:sport_shoes_store/features/authentication/screens/login/login.dart';

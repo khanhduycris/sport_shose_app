@@ -18,7 +18,7 @@ class CouponCode extends StatelessWidget {
     return RoundedContainer(
       showBorder: true,
       backgroundColor: dark ? ColorApp.dark : ColorApp.white,
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
           top: Sizes.sm,
           bottom: Sizes.sm,
           right: Sizes.sm,

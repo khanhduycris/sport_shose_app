@@ -22,4 +22,17 @@ class Images{
   static const String product5 = "assets/images/products/prd5.png";
   static const String product6 = "assets/images/products/prd6.png";
   static const String product7 = "assets/images/products/prd7.png";
+
+  // categories icon
+  static const String sportIcon = "assets/icons/ic_sport.png";
+  static const String furnitureIcon = "assets/icons/ic_furniture.png";
+  static const String electronicsIcon = "assets/icons/ic_electronics.png";
+  static const String clothIcon = "assets/icons/ic_cloth.png";
+  static const String animalIcon = "assets/icons/ic_animal.png";
+  static const String shoeIcon = "assets/icons/ic_shoe.png";
+  static const String cosmeticsIcon = "assets/icons/ic_cosmetics.png";
+  static const String jeweleryIcon = "assets/icons/ic_jewelery.png";
+
+
+
 }

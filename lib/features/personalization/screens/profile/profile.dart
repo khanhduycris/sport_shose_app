@@ -36,7 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       final image = networkImage.isNotEmpty ? networkImage : Images.product1;
                       return controller.imageUploading.value ? const KShimmerEffect( width: 80,height: 80, radius: 80,) : CircularImage(image: image, width: 80,height: 80, isNetworkImage: networkImage.isNotEmpty,);
                     }),
-                    TextButton(onPressed: ()=> controller.uploadUserProfilePicture(), child: const Text("Change Profile ...."))
+                    TextButton(onPressed: () => controller.uploadUserProfilePicture(), child: const Text("Change Profile ...."))
                   ],
                 ),
               ),
