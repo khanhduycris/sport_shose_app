@@ -31,10 +31,10 @@ class LoginController extends GetxController{
         return;
       }
 
-      if (!loginFormKey.currentState!.validate()) {
-        FullScreenLoader.stopLoading();
-        return;
-      }
+      // if (!loginFormKey.currentState!.validate()) {
+      //   FullScreenLoader.stopLoading();
+      //   return;
+      // }
       //save data if remember me í selected
       if(rememberMe.value){
         localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
@@ -48,7 +48,7 @@ class LoginController extends GetxController{
       AuthenticationRepository.instance.screenRedirect();
     }catch(e){
       FullScreenLoader.stopLoading();
-      Loaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+      Loaders.errorSnackBar(title: 'Đăng nhập thất bại', message: e.toString());
     }
   }
 

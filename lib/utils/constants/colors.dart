@@ -42,5 +42,5 @@ class ColorApp {
   static const greyE9 = Color(0xFFE9EAF3);
 
   static const yellowF9 = Color(0xFFEAC47F);
-  static const yellowF8 = Color(0xFFF89A43);
+  static const yellowF8 = Color(0xFF46ADB2);
 }

@@ -7,7 +7,7 @@ class SectionHeading extends StatelessWidget {
     this.textColor,
     this.showActionButton = true,
     required this.title,
-    this.buttonTitle = 'View all',
+    this.buttonTitle = 'Tất cả sản phẩm',
     this.onPressed,
   });
   final Color? textColor;

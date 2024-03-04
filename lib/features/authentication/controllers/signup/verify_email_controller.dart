@@ -12,39 +12,39 @@ class VerifyEmailController extends GetxController {
   static VerifyEmailController get instance => Get.find();
   @override
   void onInit() {
-    sendEmailVerification();
-    setTimerForAutoRedirect();
+    // sendEmailVerification();
+    // setTimerForAutoRedirect();
     checkEmailVerificationStatus();
     super.onInit();
   }
 
-  sendEmailVerification() async {
-    try {
-      await AuthenticationRepository.instance.sendEmailVerification();
-      Loaders.successSnackBar(
-          title: 'Success!',
-          message: 'Please check your inbox and verify your email. ');
-    } catch (e) {
-      Loaders.errorSnackBar(title: 'Error!', message: e.toString());
-    }
-  }
+  // sendEmailVerification() async {
+  //   try {
+  //     await AuthenticationRepository.instance.sendEmailVerification();
+  //     Loaders.successSnackBar(
+  //         title: 'Success!',
+  //         message: 'Please check your inbox and verify your email. ');
+  //   } catch (e) {
+  //     Loaders.errorSnackBar(title: 'Error!', message: e.toString());
+  //   }
+  // }
 
   /// Timer to automatically redirect on Email Verification
-  setTimerForAutoRedirect() {
-    Timer.periodic(const Duration(seconds: 1), (timer) async {
-      await FirebaseAuth.instance.currentUser?.reload();
-      final user = FirebaseAuth.instance.currentUser;
-      if (user?.emailVerified ?? false) {
-        timer.cancel();
-        Get.offAll(() => SuccessScreen(
-              image: Images.product1,
-              title: TextString.yourAccountCreatedTitle,
-              subTitle: TextString.yourAccountCreatedSubTitle,
-              onPressed: () => AuthenticationRepository.instance.sendEmailVerification(),
-            ));
-      }
-    });
-  }
+  // setTimerForAutoRedirect() {
+  //   Timer.periodic(const Duration(seconds: 1), (timer) async {
+  //     await FirebaseAuth.instance.currentUser?.reload();
+  //     final user = FirebaseAuth.instance.currentUser;
+  //     if (user?.emailVerified ?? false) {
+  //       timer.cancel();
+  //       Get.offAll(() => SuccessScreen(
+  //             image: Images.product1,
+  //             title: TextString.yourAccountCreatedTitle,
+  //             subTitle: TextString.yourAccountCreatedSubTitle,
+  //             onPressed: () => AuthenticationRepository.instance.sendEmailVerification(),
+  //           ));
+  //     }
+  //   });
+  // }
 
   /// Manually check if email verification
   checkEmailVerificationStatus() async {

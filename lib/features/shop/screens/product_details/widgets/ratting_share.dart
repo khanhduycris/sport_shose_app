@@ -15,8 +15,8 @@ class RattingAndShare extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(Icons.star, color: Colors.amber, size: 24,),
-            SizedBox(width: Sizes.spaceBtwItems / 2,),
+            const Icon(Icons.star, color: Colors.amber, size: 24,),
+            const SizedBox(width: Sizes.spaceBtwItems / 2,),
             Text.rich(
                 TextSpan(
                     children: [
@@ -27,7 +27,7 @@ class RattingAndShare extends StatelessWidget {
             )
           ],
         ),
-        IconButton(onPressed: (){}, icon: Icon(Icons.share, size: Sizes.iconMd,))
+        IconButton(onPressed: (){}, icon: const Icon(Icons.share, size: Sizes.iconMd,))
       ],
     );
   }

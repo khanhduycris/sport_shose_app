@@ -54,37 +54,38 @@ class ProductImageSlider extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-              right: 40,
-              bottom: 30,
-              child: SizedBox(
-                height: 80,
-                child: ListView.separated(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    itemBuilder: (context, index) => Obx(() {
-                          final imageSelected =
-                              controller.selectedProductImage.value ==
-                                  image[index];
-                          return RoundImage(
-                            width: 80,
-                            isNetworkImage: true,
-                            backgroundColor: dark ? ColorApp.dark : ColorApp.bg,
-                            border: Border.all(color: imageSelected ? ColorApp.blue02 : Colors.transparent),
-                            padding: const EdgeInsets.all(Sizes.sm),
-                            imageUrl: image[index],
-                            onPressed: () => controller.selectedProductImage.value = image[index]
-                          );
-                        }),
-                    separatorBuilder: (_, __) => const SizedBox(
-                          width: Sizes.spaceBtwItems,
-                        ),
-                    itemCount: image.length),
-              ),
-            ),
+            // chọn ảnh theo mẫu
+            // Positioned(
+            //   right: 40,
+            //   bottom: 30,
+            //   child: SizedBox(
+            //     height: 80,
+            //     child: ListView.separated(
+            //         shrinkWrap: true,
+            //         scrollDirection: Axis.horizontal,
+            //         physics: const AlwaysScrollableScrollPhysics(),
+            //         itemBuilder: (context, index) => Obx(() {
+            //               final imageSelected =
+            //                   controller.selectedProductImage.value ==
+            //                       image[index];
+            //               return RoundImage(
+            //                 width: 80,
+            //                 isNetworkImage: true,
+            //                 backgroundColor: dark ? ColorApp.dark : ColorApp.bg,
+            //                 border: Border.all(color: imageSelected ? ColorApp.blue02 : Colors.transparent),
+            //                 padding: const EdgeInsets.all(Sizes.sm),
+            //                 imageUrl: image[index],
+            //                 onPressed: () => controller.selectedProductImage.value = image[index]
+            //               );
+            //             }),
+            //         separatorBuilder: (_, __) => const SizedBox(
+            //               width: Sizes.spaceBtwItems,
+            //             ),
+            //         itemCount: image.length),
+            //   ),
+            // ),
             KAppbar(
-              // leadingOnPressed: () => Get.back(),
+              leadingOnPressed: () => Get.back(),
               showBackArrow: true,
               actions: [
                 FavouriteIcon(productId: productModel.id,)

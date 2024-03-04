@@ -17,6 +17,7 @@ import 'package:sport_shoes_store/utils/constants/sizes.dart';
 import 'package:sport_shoes_store/utils/helpers/helper.dart';
 
 import '../product_reviews/product_reviews.dart';
+
 class ProductDetail extends StatefulWidget {
   const ProductDetail({super.key, required this.productModel});
 
@@ -37,43 +38,75 @@ class _ProductDetailState extends State<ProductDetail> {
           children: [
             ProductImageSlider(productModel: widget.productModel),
             Padding(
-              padding: const EdgeInsets.only(right: Sizes.defaultSpace, left: Sizes.defaultSpace, bottom: Sizes.defaultSpace),
+              padding: const EdgeInsets.only(
+                  right: Sizes.defaultSpace,
+                  left: Sizes.defaultSpace,
+                  bottom: Sizes.defaultSpace),
               child: Column(
                 children: [
-                 const RattingAndShare(),
-                  ProductMetaData(productModel: widget.productModel,),
-                  // if(widget.productModel.productType == ProductType.variable.toString())
-                    ProductAttributes(productModel: widget.productModel,),
-                  if(widget.productModel.productType == ProductType.variable.toString()) const SizedBox(height: Sizes.spaceBtwSections,),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: (){},
-                      child: const Text('Checkout'),
-                    ),
+                  const RattingAndShare(),
+                  ProductMetaData(
+                    productModel: widget.productModel,
                   ),
-                  const SizedBox(height: Sizes.spaceBtwSections,),
-                  const SectionHeading(title: 'Description', showActionButton: false,),
-                  const SizedBox(height: Sizes.spaceBtwItems,),
+                  // if(widget.productModel.productType == ProductType.variable.toString())
+                  //   ProductAttributes(productModel: widget.productModel,),
+                  if (widget.productModel.productType ==
+                      ProductType.variable.toString())
+                    const SizedBox(
+                      height: Sizes.spaceBtwSections,
+                    ),
+                  // SizedBox(
+                  //   width: double.infinity,
+                  //   child: ElevatedButton(
+                  //     onPressed: (){},
+                  //     child: const Text('Checkout'),
+                  //   ),
+                  // ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const SectionHeading(
+                    title: 'Mô tả sản phẩm',
+                    showActionButton: false,
+                  ),
+                  const SizedBox(
+                    height: Sizes.spaceBtwItems,
+                  ),
                   ReadMoreText(
-                   widget.productModel.description ?? '',
+                    widget.productModel.description ?? '',
                     trimLines: 2,
                     trimMode: TrimMode.Line,
-                    trimCollapsedText: 'Show more',
-                    trimExpandedText: 'Less',
-                    moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                    lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    trimCollapsedText: 'Xem thêm',
+                    trimExpandedText: 'Thu gọn',
+                    moreStyle: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w800),
+                    lessStyle: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w800),
                   ),
                   const Divider(),
-                  const SizedBox(height: Sizes.spaceBtwItems,),
+                  const SizedBox(
+                    height: Sizes.spaceBtwItems,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const SectionHeading(title: 'Review 199', showActionButton: false,),
-                      IconButton(onPressed: () => Get.to(() => ProductReviewsScreen()), icon: Icon(Icons.arrow_forward_ios_sharp, size: 18,),),
+                      const SectionHeading(
+                        title: 'Đánh giá 199',
+                        showActionButton: false,
+                      ),
+                      IconButton(
+                        onPressed: () =>
+                            Get.to(() => const ProductReviewsScreen()),
+                        icon: const Icon(
+                          Icons.arrow_forward_ios_sharp,
+                          size: 18,
+                        ),
+                      ),
                     ],
                   ),
-                  const SizedBox(height: Sizes.spaceBtwSections,)
+                  const SizedBox(
+                    height: Sizes.spaceBtwSections,
+                  )
                 ],
               ),
             )

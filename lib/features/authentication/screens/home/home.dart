@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SingleChildScrollView(
       child: Column(
         children: [
-          PrimaryHeaderContainer(
+          const PrimaryHeaderContainer(
               child: Column(
             children: [
               HomeAppBar(),
@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: Sizes.spaceBtwSections,
               ),
               SearchContainer(
-                text: 'Search in Store',
+                text: 'Tìm kiếm trong cửa hàng',
               ),
               SizedBox(
                 height: Sizes.spaceBtwSections,
@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: Sizes.spaceBtwSections,
               ),
               HomeCategories(),
-              const SizedBox(
+              SizedBox(
                 height: Sizes.spaceBtwSections * 2,
               ),
             ],
@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: Sizes.spaceBtwSections,
                   ),
                   SectionHeading(
-                    title: 'Popular Products',
+                    title: 'Sản phẩm bán chạy',
                     onPressed: () => Get.to(() => AllProductScreen(
                         title: 'Popular Products',
                         futureMethod: controller.fetchAllFeaturedProducts(),

@@ -31,7 +31,7 @@ class CategoryTab extends StatelessWidget {
           padding: const EdgeInsets.all(Sizes.defaultSpace),
           child: Column(
             children: [
-              CategoryBrands(categoryModel: categoryModel),
+              // CategoryBrands(categoryModel: categoryModel),
               const SizedBox(
                 height: Sizes.spaceBtwItems,
               ),
@@ -47,17 +47,17 @@ class CategoryTab extends StatelessWidget {
                     final products = snapshot.data!;
                     return Column(
                       children: [
-                        SectionHeading(
-                          title: 'aaaaaaaa',
-                          onPressed: () => Get.to(AllProductScreen(
-                            title: categoryModel.name,
-                            futureMethod: controller.getCategoryProducts(
-                                categoryId: categoryModel.id, limit: -1),
-                          )),
-                        ),
-                        const SizedBox(
-                          height: Sizes.spaceBtwItems,
-                        ),
+                        // SectionHeading(
+                        //   title: categoryModel.name,
+                        //   onPressed: () => Get.to(AllProductScreen(
+                        //     title: categoryModel.name,
+                        //     futureMethod: controller.getCategoryProducts(
+                        //         categoryId: categoryModel.id, limit: -1),
+                        //   )),
+                        // ),
+                        // const SizedBox(
+                        //   height: Sizes.spaceBtwItems,
+                        // ),
                         GridLayout(
                             itemCount: products.length,
                             itemBuilder: (_, index) => ProductCardVertical(

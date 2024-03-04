@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sport_shoes_store/data/repositories/authentication_repository.dart';
 import 'package:sport_shoes_store/features/authentication/controllers/signup/verify_email_controller.dart';
+import 'package:sport_shoes_store/features/authentication/screens/home/home.dart';
 import 'package:sport_shoes_store/features/authentication/screens/login/login.dart';
 import 'package:sport_shoes_store/features/authentication/screens/signup/success_screen.dart';
+import 'package:sport_shoes_store/navigation_menu.dart';
 import 'package:sport_shoes_store/utils/constants/sizes.dart';
 import 'package:sport_shoes_store/utils/constants/text_strings.dart';
 import 'package:sport_shoes_store/utils/helpers/helper.dart';
@@ -56,7 +58,8 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                  onPressed: () => controller.sendEmailVerification(),
+                  onPressed: () => Get.to(() => HomeScreen()),
+                  // onPressed: () => controller.sendEmailVerification(),
                   child: const Text(TextString.resendEmail),
                 ),
               )

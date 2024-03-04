@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:sport_shoes_store/common/widgets/loader/loaders.dart';
 import 'package:sport_shoes_store/features/shop/controllers/product/variation_controller.dart';
@@ -21,7 +22,7 @@ class CartController extends GetxController {
 
   void addToCart(ProductModel productModel) {
     if (productQuantityInCart.value < 1) {
-      Loaders.customToast(message: 'Select Quantity');
+      Loaders.customToast(message: 'Vui lòng chọn số lượng');
       return;
     }
     // if (productModel.productType == ProductType.variable.toString() &&
@@ -59,7 +60,7 @@ class CartController extends GetxController {
     }
 
     updateCart();
-    Loaders.customToast(message: 'You product has been added ..');
+    Loaders.customToast(message: 'Thêm giỏ hàng thành công');
   }
 
   void addOneToCart(CartItemModel item) {

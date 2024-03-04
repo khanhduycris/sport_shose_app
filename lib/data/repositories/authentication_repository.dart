@@ -13,6 +13,7 @@ import 'package:sport_shoes_store/features/authentication/screens/signup/vefify_
 import 'package:sport_shoes_store/navigation_menu.dart';
 import 'package:sport_shoes_store/utils/local_storage/storage_utility.dart';
 
+import '../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../utils/exceptions/firebase_exceptions.dart';
 import '../../utils/exceptions/format_exceptions.dart';
 import '../../utils/exceptions/platform_exceptions.dart';
@@ -34,16 +35,17 @@ class AuthenticationRepository extends GetxController {
   screenRedirect() async {
     final user = _auth.currentUser;
     if (user != null) {
-      if (user.emailVerified) {
-
-        await LocalStorage.init(user.uid);
-
-        Get.offAll(() => const NavigationMenu());
-      } else {
-        Get.offAll(() => VerifyEmailScreen(
-              email: _auth.currentUser?.email,
-            ));
-      }
+      await LocalStorage.init(user.uid);
+      Get.offAll(() => const NavigationMenu());
+      // if (user.emailVerified) {
+      //   await LocalStorage.init(user.uid);
+      //
+      //   Get.offAll(() => const NavigationMenu());
+      // } else {
+      //   Get.offAll(() => VerifyEmailScreen(
+      //         email: _auth.currentUser?.email,
+      //       ));
+      // }
     } else {
       if (kDebugMode) {
         print('================= GET STORAGE ================');
@@ -76,13 +78,13 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-
-
   Future<UserCredential> loginWithEmailAndPassword(
       String email, String password) async {
     try {
       return await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      throw KFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
       throw KFirebaseException(e.code).message;
     } on FormatException catch (_) {
@@ -99,11 +101,15 @@ class AuthenticationRepository extends GetxController {
       // trigger the authentication flow
       final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
       // obtain the auth details from the request
-      final GoogleSignInAuthentication? googleAuth = await userAccount?.authentication;
+      final GoogleSignInAuthentication? googleAuth =
+          await userAccount?.authentication;
       // create a new credential
-      final credentials = GoogleAuthProvider.credential(accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+      final credentials = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
       //once singed in, return the UserCredential
       return await _auth.signInWithCredential(credentials);
+    } on FirebaseAuthException catch (e) {
+      throw KFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
       throw KFirebaseException(e.code).message;
     } on FormatException catch (_) {
@@ -115,19 +121,19 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  Future<void> sendEmailVerification() async {
-    try {
-      await _auth.currentUser?.sendEmailVerification();
-    } on FirebaseException catch (e) {
-      throw KFirebaseException(e.code).message;
-    } on FormatException catch (_) {
-      throw const KFormatException();
-    } on PlatformException catch (e) {
-      throw KPlatformException(e.code).message;
-    } catch (e) {
-      throw 'Something went wrong. Please try again';
-    }
-  }
+  // Future<void> sendEmailVerification() async {
+  //   try {
+  //     await _auth.currentUser?.sendEmailVerification();
+  //   } on FirebaseException catch (e) {
+  //     throw KFirebaseException(e.code).message;
+  //   } on FormatException catch (_) {
+  //     throw const KFormatException();
+  //   } on PlatformException catch (e) {
+  //     throw KPlatformException(e.code).message;
+  //   } catch (e) {
+  //     throw 'Something went wrong. Please try again';
+  //   }
+  // }
 
   Future<void> logout() async {
     try {
@@ -145,9 +151,11 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  Future<void> reAuthenticateWithEmailAndPassword(String email, String password) async {
+  Future<void> reAuthenticateWithEmailAndPassword(
+      String email, String password) async {
     try {
-      AuthCredential credential = EmailAuthProvider.credential(email: email, password: password);
+      AuthCredential credential =
+          EmailAuthProvider.credential(email: email, password: password);
       await _auth.currentUser!.reauthenticateWithCredential(credential);
     } on FirebaseException catch (e) {
       throw KFirebaseException(e.code).message;
@@ -159,6 +167,4 @@ class AuthenticationRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
   }
-
-
 }

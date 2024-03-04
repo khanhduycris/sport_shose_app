@@ -24,7 +24,7 @@ class CartCounterIcon extends StatelessWidget {
         IconButton(
             onPressed: () => Get.to(() => CartScreen()),
             icon: Icon(
-              Icons.store,
+              Icons.shopping_cart,
               color: iconColor,
             )),
         Positioned(
@@ -33,7 +33,7 @@ class CartCounterIcon extends StatelessWidget {
             width: 18,
             height: 18,
             decoration: BoxDecoration(
-                color: ColorApp.black,
+                color: Colors.red,
                 borderRadius: BorderRadius.circular(100)),
             child: Center(
               child: Obx(() => Text(

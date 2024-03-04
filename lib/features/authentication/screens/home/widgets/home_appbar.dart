@@ -25,7 +25,7 @@ class HomeAppBar extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .labelMedium!
-                .apply(color: Colors.grey),
+                .apply(color: Colors.black),
           ),
           Obx(() {
             if (controller.profileLoading.value) {
@@ -36,7 +36,7 @@ class HomeAppBar extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .headlineSmall!
-                    .apply(color: Colors.grey),
+                    .apply(color: Colors.black),
               );
             }
           }),

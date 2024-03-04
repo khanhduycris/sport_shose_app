@@ -7,7 +7,7 @@ class TextString{
   static const String onBoardingSubTitle2 = "For Seamless Transaction";
   static const String onBoardingSubTitle3 = "From Our Doorsteps to Yours";
 
-  static const String homeAppbarTitle = "Good day for shopping";
+  static const String homeAppbarTitle = "Chào mừng bạn đến với cửa hàng";
   static const String homeAppbarSubTitle = "Khanh Duy";
 
   // Authentication From Text
