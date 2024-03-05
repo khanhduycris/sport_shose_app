@@ -27,53 +27,24 @@ class BottomAddToCart extends StatelessWidget {
     final controller = CartController.instance;
     controller.updateAlreadyAddedProductCount(product);
     final dark = HelperFunctions.isDarkMode(context);
-    return SizedBox(
-      width: double.infinity,
-      height: 50,
-      child: Row(
-        children: [
-          InkWell(
-            onTap: () => selectPaymentMethod(
-              context,
-            ),
-            child: Container(
-              width: 224,
-              color: ColorApp.yellowF8,
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.add_shopping_cart,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    'Thêm vào giỏ hàng',
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
-              ),
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: ElevatedButton(
+        onPressed: () => selectPaymentMethod(context),
+        style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.all(Sizes.md),
+            backgroundColor: Colors.orangeAccent,
+            side: const BorderSide(color: Colors.transparent)),
+        child: const SizedBox(
+          width: double.infinity,
+          height: 30,
+          child: Center(
+            child: Text(
+              'Thêm vào giỏ hàng',
+              style: TextStyle(color: Colors.white),
             ),
           ),
-          Container(
-            width: 224,
-            color: Colors.deepOrangeAccent,
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Mua với',
-                  style: TextStyle(color: Colors.white),
-                ),
-                Text(
-                  '177',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-          )
-        ],
+        ),
       ),
     );
     // return Container(

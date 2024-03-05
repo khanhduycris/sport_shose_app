@@ -27,7 +27,7 @@ class CartScreen extends StatelessWidget {
       appBar: KAppbar(
         showBackArrow: true,
         title: Text(
-          'Cart',
+          'Giỏ hàng',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
@@ -57,7 +57,7 @@ class CartScreen extends StatelessWidget {
         padding: const EdgeInsets.all(Sizes.defaultSpace),
         child: ElevatedButton(
           onPressed: () => Get.to(() => const CheckoutScreen()),
-          child:  Obx( ()=> Text('Checkout \$${controller.totalCartPrice.value}')),
+          child:  Obx( ()=> Text('Thanh toán với \$${controller.totalCartPrice.value}')),
         ),
       ),
     );

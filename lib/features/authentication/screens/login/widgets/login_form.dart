@@ -18,14 +18,21 @@ class LoginFrom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LoginController());
+    final _keyForm = GlobalKey<FormState>();
     return Form(
+      key: _keyForm,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: Sizes.spaceBtwSections),
         child: Column(
           children: [
             TextFormField(
               controller: controller.email,
-              validator: (value) => Validator.validateEmail(value),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
               decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.email_outlined),
                   labelText: TextString.email),

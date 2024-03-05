@@ -21,7 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     final controller = UserController.instance;
     return Scaffold(
-      appBar: const KAppbar(showBackArrow: true, title: Text('Profile'),),
+      appBar: const KAppbar(showBackArrow: true, title: Text('Thông tin cá nhân'),),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(Sizes.defaultSpace),

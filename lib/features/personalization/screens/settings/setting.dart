@@ -14,6 +14,7 @@ import 'package:sport_shoes_store/utils/constants/sizes.dart';
 import '../../../../common/widgets/list_titles/user_profile.dart';
 import '../../../../data/repositories/authentication_repository.dart';
 import '../profile/profile.dart';
+
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
 
@@ -32,38 +33,110 @@ class _SettingScreenState extends State<SettingScreen> {
               child: Column(
                 children: [
                   KAppbar(
-                    title: Text('Account', style: Theme.of(context).textTheme.headlineMedium!.apply(color: ColorApp.bg),),
+                    title: Text(
+                      'Tài khoản',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium!
+                          .apply(color: ColorApp.bg),
+                    ),
                   ),
-                  UserProfile(onPressed: () => Get.to(() => ProfileScreen()),),
+                  UserProfile(
+                    onPressed: () => Get.to(() => const ProfileScreen()),
+                  ),
                   const SizedBox(height: Sizes.spaceBtwSections),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(Sizes.defaultSpace),
+              padding: const EdgeInsets.all(Sizes.defaultSpace),
               child: Column(
                 children: [
-                  SectionHeading(title: 'Account Setting', showActionButton: false,),
-                  SizedBox(height: Sizes.spaceBtwItems,),
-                  SettingMenuTitle(icon: Icons.home, title: 'My Addresses', subTitle: 'Set shopping ...', onTap: () => Get.to(() => UserAddressScreen()),),
-                  SettingMenuTitle(icon: Icons.card_travel, title: 'My Cart', subTitle: 'Set shopping ...', onTap: () => Get.to(() => OrderScreen()),),
-                  SettingMenuTitle(icon: Icons.shopping_bag, title: 'My Orders', subTitle: 'Set shopping ...',  onTap: () => Get.to(() => OrderScreen())),
-                  SettingMenuTitle(icon: Icons.food_bank, title: 'Bank Account', subTitle: 'Set shopping ...'),
-                  SettingMenuTitle(icon: Icons.discount , title: 'My Coupons', subTitle: 'Set shopping ...'),
-                  SettingMenuTitle(icon: Icons.notifications, title: 'Notifications', subTitle: 'Set shopping ...'),
-                  SettingMenuTitle(icon: Icons.security, title: 'Account Privacy', subTitle: 'Set shopping ...'),
-                  
-                  SizedBox(height: Sizes.spaceBtwSections,),
-                  SectionHeading(title: 'App Setting', showActionButton: false,),
-                  SizedBox(height: Sizes.spaceBtwItems,),
-                  SettingMenuTitle(icon: Icons.cloud_upload, title: 'Load Data', subTitle: 'Upload Data to .......', trailing: Switch(value: true, onChanged: (value){},),),
-                  SettingMenuTitle(icon: Icons.security_rounded, title: 'Safe Mode', subTitle: 'Upload Data to .......', trailing: Switch(value: true, onChanged: (value){},),),
-                  SettingMenuTitle(icon: Icons.cloud_upload, title: 'HD Image', subTitle: 'Upload Data to .......', trailing: Switch(value: true, onChanged: (value){},),),
-                  const SizedBox(height: Sizes.spaceBtwItems,),
+                  const SectionHeading(
+                    title: 'Cài đặt tài khoản',
+                    showActionButton: false,
+                  ),
+                  const SizedBox(
+                    height: Sizes.spaceBtwItems,
+                  ),
+                  SettingMenuTitle(
+                    icon: Icons.home,
+                    title: 'Địa chỉ của bạn',
+                    subTitle: 'Set shopping ...',
+                    onTap: () => Get.to(() => const UserAddressScreen()),
+                  ),
+                  SettingMenuTitle(
+                    icon: Icons.card_travel,
+                    title: 'Giỏ hàng của bạn',
+                    subTitle: 'Set shopping ...',
+                    onTap: () => Get.to(() => const OrderScreen()),
+                  ),
+                  SettingMenuTitle(
+                      icon: Icons.shopping_bag,
+                      title: 'Đơn hàng đã mua',
+                      subTitle: 'Set shopping ...',
+                      onTap: () => Get.to(() => const OrderScreen())),
+                  const SettingMenuTitle(
+                      icon: Icons.food_bank,
+                      title: 'Thanh toán bằng ...',
+                      subTitle: 'Set shopping ...'),
+                  const SettingMenuTitle(
+                      icon: Icons.discount,
+                      title: 'Phiếu giảm giá',
+                      subTitle: 'Set shopping ...'),
+                  const SettingMenuTitle(
+                      icon: Icons.notifications,
+                      title: 'Thông báo',
+                      subTitle: 'Set shopping ...'),
+                  const SettingMenuTitle(
+                      icon: Icons.security,
+                      title: 'Bảo vệ tài khoan',
+                      subTitle: 'Set shopping ...'),
+                  const SizedBox(
+                    height: Sizes.spaceBtwSections,
+                  ),
+                  const SectionHeading(
+                    title: 'App Setting',
+                    showActionButton: false,
+                  ),
+                  const SizedBox(
+                    height: Sizes.spaceBtwItems,
+                  ),
+                  SettingMenuTitle(
+                    icon: Icons.cloud_upload,
+                    title: 'Load Data',
+                    subTitle: 'Upload Data to .......',
+                    trailing: Switch(
+                      value: true,
+                      onChanged: (value) {},
+                    ),
+                  ),
+                  SettingMenuTitle(
+                    icon: Icons.security_rounded,
+                    title: 'Safe Mode',
+                    subTitle: 'Upload Data to .......',
+                    trailing: Switch(
+                      value: true,
+                      onChanged: (value) {},
+                    ),
+                  ),
+                  SettingMenuTitle(
+                    icon: Icons.cloud_upload,
+                    title: 'HD Image',
+                    subTitle: 'Upload Data to .......',
+                    trailing: Switch(
+                      value: true,
+                      onChanged: (value) {},
+                    ),
+                  ),
+                  const SizedBox(
+                    height: Sizes.spaceBtwItems,
+                  ),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () => AuthenticationRepository.instance.logout(),
+                      onPressed: () =>
+                          AuthenticationRepository.instance.logout(),
                       child: const Text('Đăng xuất'),
                     ),
                   )

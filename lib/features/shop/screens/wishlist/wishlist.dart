@@ -28,15 +28,15 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     return Scaffold(
       appBar: KAppbar(
         title: Text(
-          'Wishlist',
+          'Sản phẩm yêu thich',
           style: Theme.of(context).textTheme.headlineMedium,
         ),
-        actions: [
-          CircularIcon(
-            icon: Icons.add,
-            onPressed: () => Get.to(const HomeScreen()),
-          )
-        ],
+        // actions: [
+        //   CircularIcon(
+        //     icon: Icons.add,
+        //     onPressed: () => Get.to(const HomeScreen()),
+        //   )
+        // ],
       ),
       body: SingleChildScrollView(
         child: Padding(

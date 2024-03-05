@@ -1,5 +1,24 @@
 class Validator{
 
+  static checkEmail({
+    String? text,
+    bool isCheck = true,
+  }) {
+    var isEmail = RegExp(
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+
+    if (text == "null" || text == null || text == "") {
+      if (!isCheck) {
+        return null;
+      }
+      return "Không bỏ trống";
+    } else if (!isEmail.hasMatch(text)) {
+      return "Email không đúng định dạng";
+    } else {
+      return null;
+    }
+  }
+
   static String? validateEmptyText(String? fieldName, String? value){
     if(value == null || value.isEmpty){
       return '$fieldName is required';

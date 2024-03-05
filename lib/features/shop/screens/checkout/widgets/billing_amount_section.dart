@@ -14,7 +14,7 @@ class BillingAmountSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Subtotal',style: Theme.of(context).textTheme.bodyLarge,),
+            Text('Số tiền',style: Theme.of(context).textTheme.bodyLarge,),
             Text('\$$subTotal',style: Theme.of(context).textTheme.bodyMedium,),
           ],
         ),
@@ -22,7 +22,7 @@ class BillingAmountSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Shipping Fee',style: Theme.of(context).textTheme.bodyLarge,),
+            Text('Tiền ship',style: Theme.of(context).textTheme.bodyLarge,),
             Text('\$${PricingCalculator.calculateShippingCost(subTotal, 'VN')}',style: Theme.of(context).textTheme.labelLarge,),
           ],
         ),
@@ -30,7 +30,7 @@ class BillingAmountSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Tax',style: Theme.of(context).textTheme.bodyLarge,),
+            Text('Thuế',style: Theme.of(context).textTheme.bodyLarge,),
             Text('\$${PricingCalculator.calculateTax(subTotal, 'VN')}',style: Theme.of(context).textTheme.labelLarge,),
           ],
         ),
@@ -38,7 +38,7 @@ class BillingAmountSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Oder total',style: Theme.of(context).textTheme.bodyLarge,),
+            Text('Tổng tiền',style: Theme.of(context).textTheme.bodyLarge,),
             Text('\$${PricingCalculator.calculateTotalPrice(subTotal, 'VN')}',style: Theme.of(context).textTheme.bodyMedium,),
           ],
         ),

@@ -40,7 +40,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       appBar: KAppbar(
         showBackArrow: true,
         title: Text(
-          'Order Review',
+          'Thanh toán',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
@@ -92,7 +92,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               ? () => orderController.processOrder(totalAmount)
               : () => Loaders.warningSnackBar(
                   title: 'Empty cart', message: 'Add items in the...'),
-          child: Text('Checkout \$$totalAmount'),
+          child: Text('Thanh toán với \$$totalAmount'),
         ),
       ),
     );
