@@ -104,6 +104,7 @@ class _ProductCardVerticalState extends State<ProductCardVertical> {
               children: [
                 Flexible(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // if(widget.productModel.productType == ProductType.single.toString() && widget.productModel.salePrice > 0)
                       Padding(
@@ -115,7 +116,11 @@ class _ProductCardVerticalState extends State<ProductCardVertical> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: Sizes.sm),
-                        child: ProductPriceText(price: controller.getProductPrice(widget.productModel),),
+                        child: Text(
+                          widget.productModel.salePrice.toString(),
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        // child: ProductPriceText(price: controller.getProductPrice(widget.productModel)),
                       ),
                     ],
                   ),

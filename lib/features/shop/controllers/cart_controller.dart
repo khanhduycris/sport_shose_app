@@ -106,7 +106,7 @@ class CartController extends GetxController {
     );
   }
 
-  void updateAlreadyAddedProductCount(ProductModel productModel){
+  void updateAlreadyAddedProductCount(ProductModel productModel) {
     productQuantityInCart.value = getProductQuantityInCart(productModel.id);
     // if(productModel.productType == ProductType.single.toString()){
     //   productQuantityInCart.value = getProductQuantityInCart(productModel.id);

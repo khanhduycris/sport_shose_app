@@ -133,16 +133,18 @@ class BottomAddToCart extends StatelessWidget {
                           const SizedBox(
                             width: 20,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 100),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(product.brand!.name),
-                                Text(product.title),
-                                Text('\$${product.price}'),
-                              ],
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 100),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(product.brand!.name, overflow: TextOverflow.ellipsis, maxLines: 3),
+                                  Text(product.title, overflow: TextOverflow.ellipsis, maxLines: 3),
+                                  Text('\$${product.price}'),
+                                ],
+                              ),
                             ),
                           ),
                         ],

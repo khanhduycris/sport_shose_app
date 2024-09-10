@@ -34,7 +34,8 @@ class ProductMetaData extends StatelessWidget {
             // if(productModel.productType == ProductType.single.toString() && productModel.salePrice > 0)
             Text('\$${productModel.price}', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),),
             SizedBox(width: Sizes.spaceBtwItems,),
-            ProductPriceText(price: controller.getProductPrice(productModel), isLarge: true,)
+            Text('\$${productModel.salePrice}', style: TextStyle(fontSize: 24, color: Colors.black, fontWeight: FontWeight.bold),
+            )
           ],
         ),
         SizedBox(height: Sizes.spaceBtwItems / 1.5,),

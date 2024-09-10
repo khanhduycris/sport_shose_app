@@ -7,6 +7,7 @@ import 'package:sport_shoes_store/utils/constants/colors.dart';
 class FavouriteIcon extends StatelessWidget {
   const FavouriteIcon({super.key, required this.productId});
   final String productId;
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(FavouritesController());

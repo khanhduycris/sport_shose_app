@@ -42,12 +42,9 @@ class ProductController extends GetxController{
     }
   }
 
-  // get the product price or price range for variations
   String getProductPrice (ProductModel productModel){
     double smallestPrice = double.infinity;
     double largestPrice = 0.0;
-
-    //if no variations exist, return the simple price or sale price
     if(productModel.productType == ProductType.single.toString()){
       return (productModel.salePrice > 0 ? productModel.salePrice : productModel.price).toString();
     }else{
