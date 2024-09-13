@@ -83,33 +83,33 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: Sizes.spaceBtwSections,
                   ),
-                  SectionHeading(
-                    title: 'Sản phẩm bán chạy',
-                    onPressed: () => Get.to(() => AllProductScreen(
-                        title: 'Popular Products',
-                        futureMethod: controller.fetchAllFeaturedProducts(),
-                        query: FirebaseFirestore.instance
-                            .collection('Products')
-                            .where('IsFeatured', isEqualTo: true)
-                            .limit(6))),
-                  ),
-                  const SizedBox(
-                    height: Sizes.spaceBtwSections,
-                  ),
-                  Obx(() {
-                    if (controller.isLoading.value) {
-                      return const VerticalProductShimmer();
-                    }
-                    if (controller.featuredProducts.isEmpty) {
-                      return Center(
-                          child: Text('No data',
-                              style: Theme.of(context).textTheme.bodyMedium));
-                    }
-                    return GridLayout(
-                        itemCount: controller.featuredProducts.length,
-                        itemBuilder: (context, index) => ProductCardVertical(
-                            productModel: controller.featuredProducts[index]));
-                  })
+                  // SectionHeading(
+                  //   title: 'Sản phẩm bán chạy',
+                  //   onPressed: () => Get.to(() => AllProductScreen(
+                  //       title: 'Popular Products',
+                  //       futureMethod: controller.fetchAllFeaturedProducts(),
+                  //       query: FirebaseFirestore.instance
+                  //           .collection('Products')
+                  //           .where('IsFeatured', isEqualTo: true)
+                  //           .limit(6))),
+                  // ),
+                  // const SizedBox(
+                  //   height: Sizes.spaceBtwSections,
+                  // ),
+                  // Obx(() {
+                  //   if (controller.isLoading.value) {
+                  //     return const VerticalProductShimmer();
+                  //   }
+                  //   if (controller.featuredProducts.isEmpty) {
+                  //     return Center(
+                  //         child: Text('No data',
+                  //             style: Theme.of(context).textTheme.bodyMedium));
+                  //   }
+                  //   return GridLayout(
+                  //       itemCount: controller.featuredProducts.length,
+                  //       itemBuilder: (context, index) => ProductCardVertical(
+                  //           productModel: controller.featuredProducts[index]));
+                  // })
                 ],
               ))
         ],

@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sport_shoes_store/features/authentication/screens/home/home.dart';
 import 'package:sport_shoes_store/utils/helpers/helper.dart';
@@ -38,5 +40,6 @@ class NavigationMenu extends StatelessWidget {
 class NavigationController extends GetxController{
   final Rx<int> selectedIndex = 0.obs;
 
- final screens = [const HomeScreen(), StoreScreen(), FavoriteScreen(), SettingScreen()];
+ // final screens = [const HomeScreen(), StoreScreen(), FavoriteScreen(), SettingScreen()];
+ final screens = [const HomeScreen(), Container(), Container(), Container()];
 }
