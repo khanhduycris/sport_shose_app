@@ -22,10 +22,7 @@ class CartCounterIcon extends StatelessWidget {
     return Stack(
       children: [
         IconButton(
-          onPressed: () {
-
-          },
-            // onPressed: () => Get.to(() => CartScreen()),
+            onPressed: () => Get.to(() => CartScreen()),
             icon: Icon(
               Icons.shopping_cart,
               color: iconColor,
