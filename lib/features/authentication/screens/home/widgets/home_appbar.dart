@@ -32,7 +32,7 @@ class HomeAppBar extends StatelessWidget {
               return const KShimmerEffect(width: 80, height: 15);
             } else {
               return Text(
-                controller.user.value.fullName,
+                controller.user.value.lastName,
                 style: Theme.of(context)
                     .textTheme
                     .headlineSmall!
